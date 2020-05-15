@@ -73,8 +73,12 @@ impl Error for SErr {
             SErr::IndexOutOfBounds(_, _) => "Index out of bounds.",
             SErr::TypeMismatch(_, _) => "Type mismatch.",
             SErr::WrongPort(_, _) => "Wrong type of port.",
-            SErr::IOErr(x) => x.description(),
-            SErr::VarErr(x) => x.description()
+            SErr::IOErr(_) => "IO error.",
+            SErr::VarErr(_) => "Variable error."
+
+            // Comment out out-of-date `description` usage
+            // SErr::IOErr(e) => e.description(),
+            // SErr::VarErr(e) => e.description(),
         }
     }
 }

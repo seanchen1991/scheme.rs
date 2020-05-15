@@ -152,7 +152,7 @@ impl PortData {
     }
 
     pub fn with_chars<F, T>(&mut self, f: F) -> SResult<T>
-    where F: FnOnce(&mut Iterator<Item=char>) -> SResult<T> {
+    where F: FnOnce(&mut dyn Iterator<Item=char>) -> SResult<T> {
         macro_rules! with_chars(
             ($br: ident) => {{
                 let br = &mut *$br.borrow_mut();
@@ -200,14 +200,14 @@ impl PortData {
         }
     }
 
-    pub fn is_output(&self) -> bool {
-        match self {
-            PortData::TextualFileOutput(_, _) => true,
-            PortData::BinaryFileOutput(_, _) => true,
-            PortData::StdOutput(_) => true,
-            _ => false
-        }
-    }
+    // pub fn is_output(&self) -> bool {
+    //     match self {
+    //         PortData::TextualFileOutput(_, _) => true,
+    //         PortData::BinaryFileOutput(_, _) => true,
+    //         PortData::StdOutput(_) => true,
+    //         _ => false
+    //     }
+    // }
 
     pub fn is_textual(&self) -> bool {
         match self {

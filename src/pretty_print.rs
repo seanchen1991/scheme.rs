@@ -1,6 +1,6 @@
 use std::fmt;
 
-use env::EnvRef;
+// use env::EnvRef;
 use lexer::Token;
 use parser::SExpr;
 use procedure::ProcedureData;

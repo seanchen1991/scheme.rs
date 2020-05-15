@@ -73,12 +73,12 @@ impl EnvRef {
             .set(key, val)
     }
 
-    pub fn remove(&self, key: &str) -> SResult<SExpr> {
-        self.0.borrow_mut()
-            .as_mut()
-            .ok_or_else(|| SErr::EnvNotFound)?
-            .remove(key)
-    }
+    // pub fn remove(&self, key: &str) -> SResult<SExpr> {
+    //     self.0.borrow_mut()
+    //         .as_mut()
+    //         .ok_or_else(|| SErr::EnvNotFound)?
+    //         .remove(key)
+    // }
 }
 
 #[derive(Debug, PartialEq)]
@@ -157,16 +157,16 @@ impl Env {
         }
     }
 
-    pub fn remove(&mut self, key: &str) -> SResult<SExpr> {
-        if self.values.contains_key(key) {
-            self.values.remove(key)
-                .ok_or_else(|| SErr::new_unbound_var(key))
-        } else if self.parent.is_some() {
-            self.parent.remove(key)
-        } else {
-            bail!(UnboundVar => key)
-        }
-    }
+    // pub fn remove(&mut self, key: &str) -> SResult<SExpr> {
+    //     if self.values.contains_key(key) {
+    //         self.values.remove(key)
+    //             .ok_or_else(|| SErr::new_unbound_var(key))
+    //     } else if self.parent.is_some() {
+    //         self.parent.remove(key)
+    //     } else {
+    //         bail!(UnboundVar => key)
+    //     }
+    // }
 
     pub fn pack(&mut self, keys: &[String], vals: SExprs) {
         for (i, arg) in vals.into_iter().enumerate() {

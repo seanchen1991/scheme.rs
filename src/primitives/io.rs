@@ -94,7 +94,7 @@ pub fn read(args: Args) -> SResult<SExpr> {
 pub fn read_line(args: Args) -> SResult<SExpr> {
     // I couldn't understand why it can't infer the type of x.
     let x: SResult<String> = call_read_fn!(args, read_line);
-    Ok(sstr!(x?.trim_right_matches(|c| c == '\n')))
+    Ok(sstr!(x?.trim_end_matches(|c| c == '\n')))
 }
 
 pub fn read_char(args: Args) -> SResult<SExpr> {
